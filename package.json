@@ -1,0 +1,22 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.1.0",
+    "ejs": "*",
+    "express-form": "*",
+    "mongodb": "*",
+    "express-simple-flash": "0.0.1",
+    "ejs-locals": "~1.0.2",
+    "passport": "~0.1.15",
+    "passport-local": "~0.1.6",
+    "mongoose": "~3.5.5",
+    "bcrypt": "~0.7.3",
+    "parseq": "~0.2.0",
+    "jake": "~0.5.8"
+  }
+}

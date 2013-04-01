@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title> site </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="/public/stylesheets/style.css" rel="stylesheet" media="screen">
+    <link href="/public/stylesheets/navbar.css" rel="stylesheet" media="screen">
+    <link href="/public/stylesheets/slider.css" rel="stylesheet" media="screen">
+    <link href="/public/libraries/bootstrap/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    
+  </head>
+  <body>
+
+    <% include navbar.ejs %>
+
+    <content>
+
+      <%- body %>
+
+
+    </content>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/public/libraries/bootstrap/javascripts/bootstrap.min.js"></script>
+
+    <script>
+
+      $(document).ready(function(){
+        $('#myCarousel').carousel("pause");
+      }); 
+
+    </script>
+
+  </body>
+</html>

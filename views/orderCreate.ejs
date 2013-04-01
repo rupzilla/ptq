@@ -1,0 +1,229 @@
+<% layout('layout') -%>
+<div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+
+
+    <!-- Carousel page where the user picks his option -->
+    <div class="active item"> 
+
+      <img src="/public/images/splash/01.jpg" alt=""> </img> 
+
+      <div class="container">
+        <div class="carousel-caption">
+          <h1> Step 1 </h1>
+          <p> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur  </p> </br>
+          <div class='span8 offset2'> 
+
+            <button class="btn btn-large btn-block btn-primary" 
+                    type="button"
+                    onClick="$('#myCarousel').carousel(1)">
+
+                    I know what she wants
+            </button> </br>
+
+            <button class="btn btn-large btn-block btn-primary" 
+                    type="button"
+                    onClick="$('#myCarousel').carousel(2)">
+
+                    Either she or a friend knows what she wants
+            </button> </br>            
+
+
+
+            <a class="btn btn-large btn-block" 
+                    href="/basics">
+
+                    We would like help figuring out what we want
+            </a> </br> 
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Option 1 -->
+
+
+    <div class="item">
+
+      <img src="/public/images/splash/01.jpg" alt=""> </img>
+      <div class="container">
+        <div class="carousel-caption">
+          <div class='span4'>
+            <a  href="#myCarousel" data-slide-to="0">Back</a> 
+            <h1 style='color:#FFFFFF;'> Decide </h1>
+            <p style='text-align:justify; text-justify:inter-word;'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. </p>
+          </div>
+          <div class="span4">
+
+            <!-- FORM -->
+            <form>
+                <label>  Upload Images: <h5>Upload up to three images of rings similar to the one you are looking for. (Max 2 MB per image) </h5></label> </br>
+
+                <div class='span4' style='color:#ffffff;'>
+
+                  <div class='row'><input type="file" name="datafile" size="40"> </input> </div>
+                  <div class='row'><input type="file" name="datafile" size="40"> </input>  </div>
+                  <div class='row'><input type="file" name="datafile" size="40"> </input>  </div>
+                </div> 
+
+              </br> </br> </br>
+
+                <label> Metal:</label> 
+
+                  <select name="metal">
+                    <option>Gold</option>
+                    <option>Silver</option>
+                    <option>Platinum</option>
+                    <option>I don't know</option>
+                  </select>
+
+
+                <label>Band Type:</label> 
+                  <select name="band">
+                    <option>Type 1</option>
+                    <option>Type 2</option>
+                    <option>Type 3</option>
+                    <option>Type 4</option>
+                    <option>Type 5</option>
+
+                  </select>
+
+                 </br> 
+                <label>Budget:</label> 
+                <div class="input-prepend input-append">
+                  <span class="add-on">$</span>
+                  <input class="span2" name="budget" type="text">
+                  <span class="add-on">.00</span>
+                </div>
+
+
+
+          </div>
+
+          <div class="span4">
+                <label>Ring Size:</label> 
+                <select name="metal">
+                  <option>Small</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+                </select>
+
+
+                <label>Number of Stones:</label> <input class="input-mini" name="budget" type="text">
+                  <label>Carat:</label> 
+
+                  <select name="metal">
+                    <option>Gold</option>
+                    <option>Silver</option>
+                    <option>Platinum</option>
+                    <option>I don't know</option>
+                  </select>
+
+
+                <label>Color:</label> 
+                  <select name="band">
+                    <option>D</option><option>E</option><option>F</option> 
+                    <option>G</option><option>H</option><option>I</option>
+                    <option>J</option><option>K</option><option>L</option>
+                    <option>M</option><option>N</option><option>O</option>
+                    <option>P</option><option>Q</option><option>R</option>
+                    <option>S</option><option>T</option><option>U</option>
+                    <option>V</option><option>W</option><option>X</option>
+
+                  </select>
+
+                <label>Cut:</label> 
+                  <select name="metal">
+                    <option>Ideal</option>
+                    <option>Premium</option>
+                    <option>Very Good</option>
+                    <option>Fair</option>
+                    <option>Poor</option>
+
+                  </select>
+
+                <label>Clarity:</label> 
+                  <select name="metal">
+                    <option>F</option>
+                    <option>IF</option>
+                    <option>VVS1 - VVS2</option>
+                    <option>VS1 - VS2</option>
+                    <option>Sl1 - Sl2</option>
+                    <option>I1 - I3</option>
+
+
+                  </select>
+
+                  <label>Other Comments:</label> <textarea class="span4" rows="3"></textarea>
+                  </br> </br>
+                  <button class="btn btn-large btn-block btn-primary" type="button">Submit</button>
+            </form>
+
+          </div>
+
+
+
+
+        </div>
+
+            <div class='item'> </div>
+
+      </div>
+
+
+
+    </div>
+
+
+    <!-- Option 2 -->
+    <div class="item">
+      <img src="/public/images/splash/01.jpg" alt=""> </img>
+      <div class="container">
+        <div class="carousel-caption">
+
+          <div class='span4'>
+            <a  href="#myCarousel" data-slide-to="0">Back</a> 
+            <h1 style='color:#FFFFFF;'> Get Help </h1>
+            <p style='text-align:justify; text-justify:inter-word;'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. </p>
+
+          </div>
+
+
+          <div class='span8'>
+            <form>
+              <label>Contact Email:</label> <input class='input-xlarge'  name="contactEmail" type="text">
+              <label>Email Message:</label> <textarea class="span8" style='font-size:18px; padding: 5px, 5px, 5px, 5px;' rows="10"></textarea>
+                  </br> </br>
+
+              <button class="btn btn-large btn-block btn-primary" type="button">Send Email</button>
+
+            </form>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
