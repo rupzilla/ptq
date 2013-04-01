@@ -1,10 +1,6 @@
 <% layout('layout') -%>
 
 
-<p>Username: <%= user.username %></p>
-<p>Email: <%= user.email %></p>
-
-
 
 <% layout('layout') -%>
 <div id="myCarousel" class="carousel slide">
@@ -17,10 +13,64 @@
           <div class="container">
             <div class="carousel-caption">
 
+            	<div class='span4' style='color:#eeeeee'>
+            		<h1 > My Details </h1>
+            		<dl>
+					  <dt>Name</dt>
+					  <dd> <%= user.name %> </dd>
 
-<p>Username: <%= user.username %></p>
-<p>Email: <%= user.email %></p>
+					  <dt>Email</dt>
+					  <dd> <%= user.email %> </dd>
 
+					  <dt>ZIP</dt>
+					  <dd> <%= user.zip %> </dd>
+
+					  <dt>Password </dt>
+					  <dd> ********** </dd>
+					</dl>
+
+					<a class='btn btn-inverse'> Edit Account Settings</a>
+            	</div>
+
+            	<div class='span4'>
+            		<h1> Get Started </h1>
+            		<p style='text-align:justify;'> Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?  </p> </br>
+            		<a class="btn btn-large btn-block btn-primary" href='/order/create'>Place an Order</a>
+
+            	</div>
+
+            	<div class='span4'>
+            		<h1>  Messages </h1>
+
+            		<ul class="media-list">
+
+
+					  <li class="media">
+					    <a class="pull-left" href="#">
+					      <img class="media-object" src="http://placehold.it/50x50">
+					    </a>
+					    <div class="media-body">
+					      <h4 class="media-heading"> <a> Welcome </a> </h4>
+					    </div>
+					  </li>
+
+
+					  <li class="media">
+					    <a class="pull-left" href="#">
+					      <img class="media-object" src="http://placehold.it/50x50">
+					    </a>
+					    <div class="media-body">
+					      <h4 class="media-heading"><a> Sample Message 1 </a></h4>
+					    </div>
+					  </li>
+
+
+
+					</ul>
+
+
+
+            	<div>
 
 
 

@@ -61,7 +61,8 @@ app.configure('development', function(){
 // 1. Get to the index
 app.get('/', function (req, res) {
     res.render('index', {
-      title: 'ptq'
+      title: 'ptq',
+      user: req.user
     });
 });
 
@@ -94,8 +95,7 @@ app.post( '/', // Route
 );
 
 app.get('/user/create', function (req, res){
-  console.log(req);
-  res.redirect('/login');
+  res.render('userCreate', {zip: " ", email: " ", tos: config.dev.tos});
 })
 
 app.post('/user/create', 
@@ -148,6 +148,10 @@ app.get('order/create', function (req, res){
 app.get('/basics', function (req, res){
   res.render('basics', {});
 })
+
+app.get('/order/create', pass.ensureAuthenticated, function (req, res){
+  res.render('orderCreate', {user: req.user});
+});
 
 
 

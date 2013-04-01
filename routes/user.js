@@ -4,12 +4,10 @@ var passport = require('passport')
 //console.log("\n \n USERMODEL");
 //console.log(db.userModel.User); 
 
-exports.create = function (req, res, next) {
+exports.create = function (req, res) {
   //res.render('orderCreate', {email:req.form.email, zip:req.form.zip});
 
 
-
-  console.log("SUBMITTED FORM");
   console.log(req.form);
 
   var user = new db.userModel({ 
@@ -21,22 +19,18 @@ exports.create = function (req, res, next) {
           , admin: false
           , reg_date: Date.now() });
 
-  user.save(function(err) {
-
+  user.save(function (err){
     if(err) {
-      console.log("\nUser save failed. Logging error...");
-      console.log(err);
-      console.log('\n');
-      res.render('userCreate', {email:" ", zip:" "});
-      res.end;
+      res.render('login', {message:"Email already in use. Log in below or click to retrieve your account. "});
+      res.end();
     } else {
       console.log('saved user: ' + user.email);
+      res.render('login', {message: "Welcome. Log in with your email and password to get started!"} );
     }
-  });
+  })
+};
 
-  res.render('login', {message:"Congratulations! Now to get started, enter your email and password."});
- 
-}
+
 
 
 
