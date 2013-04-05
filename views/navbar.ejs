@@ -5,7 +5,7 @@
 
     <div class="navbar-wrapper">
       <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
-      <div class="container">
+      <div class="container" style="width:100%">
 
         <div class="navbar navbar-inverse">
           <div class="navbar-inner">
@@ -20,8 +20,10 @@
               <ul class="nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/basics">Ring Basics</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/admin">Admin</a></li>
+                <% if (user) { %>
+                <% } else { %>
+                  <li><a href="/user/create">Sign Up</a></li>
+                <% } %>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"> About Us <b class="caret"></b></a>
@@ -32,7 +34,35 @@
                 </li>
               </ul>
             </div><!--/.nav-collapse -->
+              
+              <% if (user) { %>
+                <div class="btn-toolbar pull-right offset1">
+                  <div class="btn-group">
+                    <button class="btn btn-small"> Hello, <%= user.name %> </button>
+                    <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a href="/account">Account</a></li>
+                      <li><a href="/order/create">Place Order</a></li>
+                      <li class="divider"></li>
+                      <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                  </div><!-- /btn-group -->
+                </div>
+
+
+              <% } else { %>
+                <form class="form-inline  pull-right offset1" style="padding-top:1%;padding-bottom: auto;" action='/login' method='post'>
+                  <input type="text" name='username' class="input-medium" placeholder="Email">
+                  <input type="password" name='password'class="input-small" placeholder="Password">
+                  <button type="submit" class="btn btn-small">Sign in</button>
+                </form>
+              <% } %>
+
+
+
+
           </div><!-- /.navbar-inner -->
+
         </div><!-- /.navbar -->
 
       </div> <!-- /.container -->

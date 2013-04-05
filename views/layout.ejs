@@ -19,7 +19,7 @@
 
     <% include navbar.ejs %>
 
-    <content>
+    <content style:'padding-top:1000px;'>
 
       <%- body %>
 
@@ -33,6 +33,9 @@
 
       $(document).ready(function(){
         $('#myCarousel').carousel("pause");
+        $("#myCarousel").on('slid', function (event){
+          $("#myCarousel").carousel("pause");
+        })
       }); 
 
     </script>

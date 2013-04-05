@@ -16,16 +16,16 @@ exports.create = function (req, res) {
           , password: req.form.password
           , zip: req.form.zip
           , phone: req.form.phone
-          , admin: false
+          , admin: true
           , reg_date: Date.now() });
 
   user.save(function (err){
     if(err) {
-      res.render('login', {message:"Email already in use. Log in below or click to retrieve your account. "});
+      res.render('login', {user: req.user, message:"Email already in use. Log in below or click to retrieve your account. "});
       res.end();
     } else {
       console.log('saved user: ' + user.email);
-      res.render('login', {message: "Welcome. Log in with your email and password to get started!"} );
+      res.render('login', {user: req.user, message: "Welcome. Log in with your email and password to get started!"} );
     }
   })
 };
@@ -43,7 +43,18 @@ exports.getlogin = function(req, res) {
 };
 
 exports.admin = function(req, res) {
-  res.send('access granted admin!');
+  db.userModel.find({}, function (err, users) {
+    res.render('admin', {user: req.user, users: users});
+  })
+  
+};
+
+exports.adminOrders = function(req, res) {
+  db.orderModel.find({}, function (err, orders) {
+    console.log(orders);
+    res.render('adminOrders', {user: req.user, orders: orders});
+  })
+  
 };
 
 // POST /login

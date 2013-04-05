@@ -1,6 +1,6 @@
 {
   "name": "application-name",
-  "version": "0.0.1",
+  "version": "0.0.1-1",
   "private": true,
   "scripts": {
     "start": "node app"
@@ -17,6 +17,11 @@
     "mongoose": "~3.5.5",
     "bcrypt": "~0.7.3",
     "parseq": "~0.2.0",
-    "jake": "~0.5.8"
-  }
+    "jake": "~0.5.8",
+    "mailer": "~0.6.7"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "subdomain": "achadha.newptq.achadha"
 }

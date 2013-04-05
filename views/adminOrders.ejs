@@ -1,0 +1,53 @@
+<% layout('layout') -%>
+</br></br></br></br>
+<h1> Orders </h1>
+
+<table class="table table-condensed">
+
+              <thead>
+                <tr>
+                  <th> Order ID </th>
+                  <th> User ID </th>
+                  <th> Metal </th>
+                  <th> Band Type </th>
+                  <th> Budget </th>
+                  <th> Ring Size </th>
+                  <th> Stones </th>
+                  <th> Caret </th>
+                  <th> Color </th>
+                  <th> Cut </th>
+                  <th> Clarity </th>
+                  <th> Comments </th>
+
+
+                </tr>
+              </thead>
+
+
+              <tbody>
+
+              <% for (var i=0; i < orders.length; i++) { %>
+                <tr>
+                  <td> <%= orders[i]._id %> </td>
+                  <td> <%= orders[i].placedBy %> </td>
+                  <td> <%= orders[i].metal %> </td>
+                  <td> <%= orders[i].band %> </td>
+                  <td> <%= orders[i].budget %> </td>
+                  <td> <%= orders[i].size %> </td>
+                  <td> <%= orders[i].stones %> </td>
+                  <td> <%= orders[i].carat %> </td>
+                  <td> <%= orders[i].color %> </td>
+                  <td> <%= orders[i].cut %> </td>
+                  <td> <%= orders[i].clarity %> </td>
+                  <td> <%= orders[i].comments %> </td>
+
+
+
+                </tr>
+              <% } %>
+
+
+
+              </tbody>
+
+            </table>

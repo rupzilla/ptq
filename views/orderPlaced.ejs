@@ -1,0 +1,83 @@
+<% layout('layout') -%> 
+
+</br></br></br></br></br>
+<div class='row'>
+
+	<div class='span4'>
+		<% if (order.success) { %>
+			<h1> <small> Thank You. </small> </h1>
+			<h3> <p> Your order has been placed. Our staff will get in touch with you soon. Please retain the order
+			summary below for later reference. </p> </h3>
+		<% } else { %>
+			<h5> <small> Oops...Something Went Wrong </small> </h5>
+			<h6> <p> Your order was not placed. Contact our staff. </p> </h5>
+		<% } %>
+
+			Name: <%= user.name %>
+			ZIP Code: <%= user.zip %>
+			Phone: <%= user.phone %>
+			Email: <%= user.email %>
+			<%= order.metal %>
+			<%= order.cut %>
+			<%= order.clarity %>
+
+	</div>
+
+	<div class="span8">
+              <div class="accordion" id="accordion2">
+
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      Order Details
+                    </a>
+                  </div>
+
+                  <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+                    <div class="accordion-inner">
+
+                      Metal: <%= order.metal %> </br>
+                      Band Type: <%= order.band %> </br>
+                      Budget: <%= order.budget %> </br>
+                      Ring Size: <%= order.size %> </br>
+                      Carat: <%= order.carat %> </br>
+                      Color: <%= order.color %> </br>
+					  Cut: <%= order.cut %> </br>
+					  Clarity: <%= order.clarity %> </br>
+					  Comments: <%= order.comments %> </br>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                      User Details
+                    </a>
+                  </div>
+                  <div id="collapseTwo" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                      	Name: <%= user.name %> </br>
+						ZIP Code: <%= user.zip %> </br>
+						Phone: <%= user.phone %> </br>
+						Email: <%= user.email %> </br>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                      Order Status
+                    </a>
+                  </div>
+                  <div id="collapseThree" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                      order Status
+                    </div>
+                  </div>
+                </div>
+              </div>
+	</div>
+
+
+</div>

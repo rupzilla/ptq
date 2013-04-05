@@ -19,6 +19,7 @@ mongoose.connect(uristring, mongoOptions, function (err, res) {
   }
 });
 
+
 //******* Database schema TODO add more validation
 var Schema = mongoose.Schema, 
 	ObjectId = Schema.ObjectId;
@@ -35,6 +36,8 @@ var userSchema = new Schema({
 });
 
 userSchema.index({email: 1});
+
+
 
 
 // Bcrypt middleware
@@ -54,6 +57,28 @@ userSchema.pre('save', function(next) {
 	});
 });
 
+
+
+
+
+
+// User schema
+var orderSchema = new Schema({
+  placedBy: { type: String, ref: 'User', required:true },
+  orderDate: {type: Date, required: true},
+  metal: {type: String, required: true},
+  band: {type: String, required: true},
+  budget: {type: String, required: true},
+  stones: {type: String, required: true},
+  size: {type: String, required: true},
+  carat: {type: String, required: true},
+  color: {type: String, required: true},
+  cut: {type: String, required: true},
+  clarity: {type: String, required: true},
+  comments: {type: String}
+});
+
+
 // Password verification
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
 	bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
@@ -65,3 +90,14 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 // Export user model
 var userModel = mongoose.model('User', userSchema);
 exports.userModel = userModel;
+
+var orderModel = mongoose.model('Order', orderSchema);
+exports.orderModel = orderModel;
+
+// userModel.remove({}, function(err) { 
+//    console.log('collection removed') 
+// });
+
+orderModel.remove({}, function(err) { 
+   console.log('collection removed') 
+});
