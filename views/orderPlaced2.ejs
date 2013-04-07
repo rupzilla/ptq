@@ -1,0 +1,47 @@
+<% layout('layout') -%> 
+
+</br></br></br></br></br>
+<div class='row'>
+
+	<div class='span4'>
+		<% if (order.success) { %>
+			<h1> <small> Thank You. </small> </h1>
+			<h3> <p> Your order has been placed. Our staff will get in touch with you soon. Please retain the order
+			summary below for later reference. </p> </h3>
+		<% } else { %>
+			<h5> <small> Oops...Something Went Wrong </small> </h5>
+			<h6> <p> Your order was not placed. Contact our staff. </p> </h5>
+		<% } %>
+
+
+	</div>
+
+
+            <div class="span3">
+                    <label> Name: </label> <%= user.name %> </br>
+                    <label> ZIP Code: </label> <%= user.zip %> </br>
+                    <label> Phone: </label> <%= user.phone %> </br>
+                    <label> Email: </label> <%= user.email %> </br>
+                    <label> Order ID: </label> <%= order._id %> </br>
+                    <label>  Budget: </label> <%= order.budget %> </br>
+            </br> </br>
+            <a class="btn btn-large btn-block" 
+                    href="/account">
+
+                    Continue
+            </a>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>

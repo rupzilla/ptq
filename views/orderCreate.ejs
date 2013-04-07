@@ -198,14 +198,14 @@
 
           <div class='span4'>
             <h1 style='color:#FFFFFF;'> Get Help </h1>
-            <p style='text-align:justify; text-justify:inter-word;'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. </p>
+            <p style='text-align:justify; text-justify:inter-word;'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. </p> </br>
             <a class="btn btn-large btn-block btn-red" href="#myCarousel" data-slide-to="0" type="button">Back</a>
 
           </div>
 
 
           <div class='span8'>
-            <form>
+            <form action='/order/create/option2' method='post'>
 
               <label>Budget:</d> </label>
               <div class="input-prepend input-append">
@@ -223,10 +223,10 @@
 
 
               <label>Contact Email:</label> <input class='input-xlarge'  name="contactEmail" type="text">
-              <label>Email Message:</label> <textarea class="span8" style='font-size:18px; padding: 5px, 5px, 5px, 5px;' rows="10"></textarea>
+              <label>Email Message:</label> <textarea name="message" class="span8" style='font-size:18px; padding: 5px, 5px, 5px, 5px;' rows="10"></textarea>
                   </br> </br>
 
-              <button class="btn btn-large btn-block btn-primary" type="button">Send Email</button>
+                  <input type="submit" class="btn btn-large btn-primary" value="Send Email"> </input>
 
             </form>
           </div>

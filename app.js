@@ -7,7 +7,6 @@ var express = require('express')
   , mongoose = require('mongoose')
   , http = require('http')
   , path = require('path')
-
   , db = require('./db/schema')
   , seed = require('./db/seed.js')
   , pass = require('./config/pass')
@@ -16,22 +15,27 @@ var express = require('express')
   , user_routes = require('./routes/user')
   , order_routes = require('./routes/user')
   , fs = require('fs')
-
   , config = require('./config.js')
   , form = require("express-form")
   , engine = require('ejs-locals')
   , filter = form.filter
   , validate = form.validate
-
-  , email = require('mailer');
+  , nodemailer = require('nodemailer');
 
 var app = express();
 
+var transport = nodemailer.createTransport("SMTP", {
+    host: "smtp.sendgrid.net", // hostname
+    port: 587, // port for secure SMTP
+    auth: {
+        user: "popthequestion",
+        pass: "PoptheQuestion1"
+    }
+})
 
 app.configure('development', function() {
   app.set('db-uri', 'mongodb://localhost/nodepad-development');
 });
-
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -46,8 +50,6 @@ app.configure(function(){
   app.engine('ejs', engine);
   app.use(express.methodOverride());
   app.use(express.session({ secret: 'keyboard cat' }));
-  // Initialize Passport!  Also use passport.session() middleware, to support
-  // persistent login sessions (recommended).
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
@@ -152,7 +154,6 @@ app.get('/basics', function (req, res){
 })
 
 
-
 app.post('/order/create/option1', pass.ensureAuthenticated, 
   form(
     validate("metal").required(),
@@ -171,47 +172,165 @@ app.post('/order/create/option1', pass.ensureAuthenticated,
     if (!req.form.isValid) {
       res.render('orderCreate', {user: req.user});
       res.end();
+    } 
+    else {
 
-    } else {
-      //order_routes.create(req, res);
-      
-var order = new db.orderModel({ 
-  placedBy: req.user._id,
-  orderDate: Date.now(),
-  metal: req.form.metal,
-  band: req.form.band,
-  budget: req.form.budget,
-  stones: req.form.numberOfStones,
-  size: req.form.size,
-  carat: req.form.carat,
-  color: req.form.color,
-  cut: req.form.cut,
-  clarity: req.form.clarity,
-  comments: req.form.comments 
-})
+      var numberOfFiles = 0;
+      for (file in req.files){
+        var type = req.files[file].type.split('/');
+        if (req.files[file].size !== 0 && 
+          req.files[file].size <= 2000000 && 
+          type[0] === 'image'){
+          //console.log(file);
+          var fileno = file.charAt(file.length - 1); console.log(fileno);
 
-  console.log(order);
+          var fileCallback = function (fileno) {
+            return function (err, data) {
+              var newPath = __dirname + '/public/images/rings/' + req.user._id + "_" + fileno +  '.' + type[1];
+              console.log(newPath);
+              fs.writeFile(newPath, data, function (err) {});
+            }
+          } 
 
-  order.save(function (err){
-    if(err) {
-      console.log('error...')
-      console.log(err);
-      res.render('orderCreate', {user: req.user, message:"Something Went Wrong again"});
-      res.end();
-    } else {
-      console.log('success');
-      order.success = true;
-      res.render('orderPlaced', {user: req.user, order: order} );
-    }
-  });
+          fs.readFile(req.files[file].path, fileCallback(fileno));
+          numberOfFiles++;
+        }
+      }   
+      var order = new db.orderModel({ 
+        placedBy: req.user._id,
+        orderDate: Date.now(),
+        metal: req.form.metal,
+        band: req.form.band,
+        budget: req.form.budget,
+        stones: req.form.numberOfStones,
+        size: req.form.size,
+        carat: req.form.carat,
+        color: req.form.color,
+        cut: req.form.cut,
+        clarity: req.form.clarity,
+        comments: req.form.comments ,
+        files: numberOfFiles
+      });
 
+      order.save(function (err){
+        if(err) {
+          res.render('orderCreate', {user: req.user, message:"Something Went Wrong again"});
+          res.end();
+        } else {
+          order.success = true;
+          res.render('orderPlaced', {user: req.user, order: order} );
+        }
+      });
     }
   }
 );
 
+app.post('/order/create/option2', pass.ensureAuthenticated,
+
+form(
+    validate("budget").required(),
+    filter("budget").trim(),
+    validate("drivingDistance").required(),
+    filter("email").trim(),
+    validate("contactEmail").required().isEmail(),
+    validate("message").required()
+  ),
+
+function (req, res){
+    if (!req.form.isValid) {
+      res.render('orderCreate', {user: req.user});
+      res.end();
+    } 
+    else {
+
+      var order = new db.orderModel({ 
+        placedBy: req.user._id,
+        orderDate: Date.now(),
+        budget: req.form.budget
+      });
+
+      console.log(order);
+
+      order.save(function (err){
+        if(err) {
+          res.render('orderCreate', {user: req.user, message:"Something Went Wrong again"});
+          res.end();
+        } else {
+          order.success = true;
+          res.render('orderPlaced2', {user: req.user, order: order} );
+        }
+      });
+
+
+
+
+var mailOptions = {
+    from: "mailer@popthequestion.us", // sender address
+    to: req.form.contactEmail, // list of receivers
+    subject: (req.user.name + " needs your help! - PoptheQuestion"), // Subject line
+    text: "Hello world", // plaintext body
+    html: "<a href=http://localhost:3000/order/" + order._id + '/help' + ">" +   "Click Me </a>" // html body
+}
+
+// send mail with defined transport object
+transport.sendMail(mailOptions, function(error, response){
+    if(error){
+        console.log(error);
+    } else {
+        console.log("Message sent: " + response.message);
+    }
+
+    // if you don't want to use this transport object anymore, uncomment following line
+    //smtpTransport.close(); // shut down the connection pool, no more messages
+});
+
+
+
+
+
+
+      // email.send({
+      //   host: "smtp.sendgrid.net",
+      //   port : 587,
+      //   domain: "smtp.sendgrid.net",
+      //   authentication: "login",
+      //   username: 'popthequestion',
+      //   password: 'PoptheQuestion1',
+      //   to : req.form.contactEmail,
+      //   from : "mailer@popthequestion.us",
+      //   subject : (req.user.name + " Needs Your Help! - PopTheQuestion"),
+      //   body : req.form.message
+      // }, 
+      // function (err, result){
+      //   if(err){ console.log(err)}; 
+      // });
+
+
+    }
+  }
+)
+
 app.get('/order/create', pass.ensureAuthenticated, function (req, res){
   res.render('orderCreate', {user: req.user});
 });
+
+app.get('/order/:id/help', function (req, res){
+  console.log(req.params.id);
+
+  db.orderModel.findOne({ _id: req.params.id }, function(err, order) {
+    if (err) {return done(err);}
+    if (!order) {return done(null, false, { message: 'Unknown order '});}
+    else if (order){
+      db.userModel.findOne({_id: order.placedBy}, function (err, user){
+        if (err){return done(err);}
+        if (!user){return done(null, false, {message: 'Unknown user '})}
+        else if (user){
+          res.render('orderHelp', {creator: user, order: order, user:req.user});
+        }
+      })
+    }
+  });
+})
 
 //app.get('/', login_routes.index);
 app.get('/account', pass.ensureAuthenticated, user_routes.account);

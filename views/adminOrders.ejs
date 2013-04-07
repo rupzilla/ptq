@@ -7,7 +7,6 @@
               <thead>
                 <tr>
                   <th> Order ID </th>
-                  <th> User ID </th>
                   <th> Metal </th>
                   <th> Band Type </th>
                   <th> Budget </th>
@@ -18,8 +17,6 @@
                   <th> Cut </th>
                   <th> Clarity </th>
                   <th> Comments </th>
-
-
                 </tr>
               </thead>
 
@@ -29,7 +26,6 @@
               <% for (var i=0; i < orders.length; i++) { %>
                 <tr>
                   <td> <%= orders[i]._id %> </td>
-                  <td> <%= orders[i].placedBy %> </td>
                   <td> <%= orders[i].metal %> </td>
                   <td> <%= orders[i].band %> </td>
                   <td> <%= orders[i].budget %> </td>
@@ -40,9 +36,6 @@
                   <td> <%= orders[i].cut %> </td>
                   <td> <%= orders[i].clarity %> </td>
                   <td> <%= orders[i].comments %> </td>
-
-
-
                 </tr>
               <% } %>
 

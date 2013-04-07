@@ -32,7 +32,8 @@ var userSchema = new Schema({
   admin: { type: Boolean, required: true },
   zip: {type: String, required: true},
   phone: {type: String, reqired: true},
-  reg_date: {type: Date, required: true}
+  reg_date: {type: Date, required: true},
+  files: {type: Number, required: true }
 });
 
 userSchema.index({email: 1});
@@ -58,25 +59,23 @@ userSchema.pre('save', function(next) {
 });
 
 
-
-
-
-
 // User schema
 var orderSchema = new Schema({
   placedBy: { type: String, ref: 'User', required:true },
   orderDate: {type: Date, required: true},
-  metal: {type: String, required: true},
-  band: {type: String, required: true},
-  budget: {type: String, required: true},
-  stones: {type: String, required: true},
-  size: {type: String, required: true},
-  carat: {type: String, required: true},
-  color: {type: String, required: true},
-  cut: {type: String, required: true},
-  clarity: {type: String, required: true},
-  comments: {type: String}
+  metal: {type: String},
+  band: {type: String},
+  budget: {type: String, required:true},
+  stones: {type: String},
+  size: {type: String},
+  carat: {type: String},
+  color: {type: String},
+  cut: {type: String},
+  clarity: {type: String},
+  comments: {type: String},
+  files: {type: Number}
 });
+
 
 
 // Password verification
@@ -99,5 +98,5 @@ exports.orderModel = orderModel;
 // });
 
 orderModel.remove({}, function(err) { 
-   console.log('collection removed') 
+  console.log('collection removed') 
 });

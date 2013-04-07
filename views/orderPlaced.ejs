@@ -13,71 +13,52 @@
 			<h6> <p> Your order was not placed. Contact our staff. </p> </h5>
 		<% } %>
 
-			Name: <%= user.name %>
-			ZIP Code: <%= user.zip %>
-			Phone: <%= user.phone %>
-			Email: <%= user.email %>
-			<%= order.metal %>
-			<%= order.cut %>
-			<%= order.clarity %>
 
 	</div>
 
-	<div class="span8">
-              <div class="accordion" id="accordion2">
 
-                <div class="accordion-group">
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                      Order Details
-                    </a>
-                  </div>
+            <div class="span3">
+                    <label> Name: </label> <%= user.name %> </br>
+                    <label> ZIP Code: </label> <%= user.zip %> </br>
+                    <label> Phone: </label> <%= user.phone %> </br>
+                    <label> Email: </label> <%= user.email %> </br>
+                    <label> Order ID: </label> <%= order._id %> </br>
+                    <label>  Metal: </label> <%= order.metal %> </br>
+                    <label>  Band Type: </label> <%= order.band %> </br>
+                    <label>  Budget: </label> <%= order.budget %> </br>
+                    <label>  Ring Size: </label> <%= order.size %> </br>
+            </div>
 
-                  <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
-                    <div class="accordion-inner">
 
-                      Metal: <%= order.metal %> </br>
-                      Band Type: <%= order.band %> </br>
-                      Budget: <%= order.budget %> </br>
-                      Ring Size: <%= order.size %> </br>
-                      Carat: <%= order.carat %> </br>
-                      Color: <%= order.color %> </br>
-					  Cut: <%= order.cut %> </br>
-					  Clarity: <%= order.clarity %> </br>
-					  Comments: <%= order.comments %> </br>
+            <div class="span6">
+                    
+        
+                    <label>  Carat: </label> <%= order.carat %> </br>
+                    <label>  Color: </label> <%= order.color %> </br>
+                    <label>  Cut: </label> <%= order.cut %> </br>
+                    <label>  Clarity: </label> <%= order.clarity %> </br>
+                    
+                    <label>  Comments: </label> <%= order.comments %> </br>
 
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-group">
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                      User Details
-                    </a>
-                  </div>
-                  <div id="collapseTwo" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      	Name: <%= user.name %> </br>
-						ZIP Code: <%= user.zip %> </br>
-						Phone: <%= user.phone %> </br>
-						Email: <%= user.email %> </br>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-group">
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                      Order Status
-                    </a>
-                  </div>
-                  <div id="collapseThree" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      order Status
-                    </div>
-                  </div>
-                </div>
-              </div>
-	</div>
+            <label>  Images: </label>
+            <img height='100px' width='100px' src= <%= '/public/images/rings/'+user._id+ "_1.png" %> alt="some_text">
+            <img height='100px' width='100px' src= <%= '/public/images/rings/'+user._id+ "_2.png" %> alt="some_text">
+            <img height='100px' width='100px' src= <%= '/public/images/rings/'+user._id+ "_3.png" %> alt="some_text">
+            </br> </br>
+            <a class="btn btn-large btn-block" 
+                    href="/account">
+
+                    Continue
+            </a>
+
+            </div>
+
+
+
+
+
+
+
 
 
 </div>
